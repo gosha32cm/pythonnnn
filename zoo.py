@@ -49,7 +49,6 @@ while(opakovat=="ano"):
     #načtení akce od uživatele
     cislo = int(input())
     
-    #Jednotlivá načtení potřebných informací a volání funkce
     if cislo==1:
         zvire = input("Zadejte zvířata která chcete přidat(tygri,lvy,opice)")
         pocet = int(input("Zadejte počet těchto zvířat"))
@@ -60,7 +59,45 @@ while(opakovat=="ano"):
         odeber(zvire,pocet)
     elif cislo==3:
         vypis()
-
-    # update proměnné opakovat, aby nedošlo k zacyklení programu
     opakovat = input("Chcete opakovat program?(ano/ne)")
     
+    
+    
+    
+    
+    def vytvor_utulek():
+    return {}
+def pridej_zvire(utulek, jmeno, druh, vek):
+    utulek[jmeno] = {"druh": druh, "vek": vek}
+def vypis_zvirata(utulek):
+    for jmeno, info in utulek.items():
+        druh = info["druh"]
+        vek = info["vek"]
+        if vek == 1:
+            let = "rok"
+        elif 2 <= vek <= 4:
+            let = "roky"
+        else:
+            let = "let"
+        print(f"{jmeno} je {druh} a je mu/jí {vek} {let}.")
+def vypis_podle_druhu(utulek, druh):
+    for jmeno, info in utulek.items():
+        if info["druh"].lower() == druh.lower():
+            vek = info["vek"]
+            if vek == 1:
+                let = "rok"
+            elif 2 <= vek <= 4:
+                let = "roky"
+            else:
+                let = "let"
+            print(f"{jmeno} je {druh} a je mu/jí {vek} {let}.")
+utulek = vytvor_utulek()
+pridej_zvire(utulek, "Míca", "kočka", 3)
+pridej_zvire(utulek, "Baryk", "pes", 5)
+pridej_zvire(utulek, "Luska", "kočka", 1)
+pridej_zvire(utulek, "Alík", "pes", 2)
+pridej_zvire(utulek, "Bobek", "králík", 4)
+print("Všechna zvířata v útulku:")
+vypis_zvirata(utulek)
+print("\nJen kočky v útulku:")
+vypis_podle_druhu(utulek, "kočka")
